@@ -100,7 +100,7 @@ end,
 })
 
 local Button = Tab:CreateButton({
-   Name = "블랙홀 스크립",
+   Name = "블랙홀 스크립트",
    Callback = function()
 loadstring(game:HttpGet("https://pastefy.app/pYhER1z4/raw"))()
    end,
@@ -205,7 +205,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/madmad7070/allfling/r
 })
 
 local Button = Tab:CreateButton({
-   Name = "올 폴링",
+   Name = "모든 사람 끌어오기",
    Callback = function()
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
@@ -261,6 +261,7 @@ stopBtn.MouseButton1Click:Connect(function()
         pullingConnection = nil
     end
 end)
+end,
 })
 local Button = Tab:CreateButton({
    Name = "터치 플링",
@@ -420,8 +421,8 @@ local Tab = Window:CreateTab("어드민👑", nil) -- Title, Image
 local Section = Tab:CreateSection("메인")
 
 Rayfield:Notify({
-   Title = "인젝됨",
-   Content = "즐겨",
+   Title = "완료",
+   Content = "ENJOY",
    Duration = 6.5,
    Image = 4483362458,
 })
@@ -1256,7 +1257,7 @@ local Section = Tab:CreateSection("메인")
 local Button = Tab:CreateButton({
    Name = "FE자위",
    Callback = function()
-loadstring(game:HttpGet("https://pastefy.app/wa3v2Vgm/raw"))("Spider Script")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/regentcon/DFDFGDFGDGDG/refs/heads/main/DFGGGGGGGGGGGGGGGGGGGGGG"))("Spider Script")
    end,
 })
 
@@ -1269,7 +1270,7 @@ loadstring(game:HttpGet("https://gist.githubusercontent.com/MelonsStuff/f018928d
     local Button = Tab:CreateButton({
    Name = "FE Scp 096",
    Callback = function()
-loadstring(game:HttpGet("https://pastefy.app/M25RnnGm/raw"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/regentcon/ASDFG-ERGERGE/refs/heads/main/ASDDFGDFGDGDG"))()
    end,
 })
 
@@ -1369,7 +1370,7 @@ loadstring(game:HttpGet("https://pastebin.com/raw/BBmCUwQg"))()
 })
 
 local Button = Tab:CreateButton({
-   Name = "낫베드",
+   Name = "PRISONWARE_v1",
    Callback = function()
    loadstring(game:HttpGet("https://raw.githubusercontent.com/Denverrz/scripts/master/PRISONWARE_v1.3.txt"))()
    end,
